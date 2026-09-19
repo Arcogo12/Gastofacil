@@ -31,6 +31,9 @@ export default function AppTabs() {
           <TabTrigger name="resumen" href="/resumen" asChild>
             <TabButton>Resumen</TabButton>
           </TabTrigger>
+          <TabTrigger name="eliminar" href="/editar-eliminar-gastos" asChild>
+            <TabButton>Eliminar</TabButton>
+          </TabTrigger>
         </CustomTabList>
       </TabList>
     </Tabs>

@@ -7,7 +7,25 @@ const STORAGE_KEY = '@gastofacil/expenses';
 async function readAll(): Promise<Expense[]> {
   const raw = await AsyncStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    return [];
+    const demo: Expense[] = [
+      createExpense({
+        amount: 150,
+        category: "food",
+        note: "Hamburguesa",
+      }),
+      createExpense({
+        amount: 80,
+        category: "transport",
+        note: "Transporte",
+      }),
+      createExpense({
+        amount: 120,
+        category: "entertainment",
+        note: "Cine",
+      }),
+    ];
+    await writeAll(demo);
+    return demo;
   }
 
   try {

@@ -1,56 +1,82 @@
-# Welcome to your Expo app 👋
+# GastoFácil
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil hecha con [Expo](https://expo.dev) y React Native para registrar, consultar y eliminar gastos de forma sencilla.
 
-## Get started
+## Requisitos
 
-1. Install dependencies
+- [Node.js](https://nodejs.org/) (versión LTS recomendada)
+- npm (viene con Node.js)
+- App **Expo Go** en el teléfono (opcional, para probar en dispositivo real)
+
+## Cómo instalar y ejecutar
+
+1. Abre una terminal en la carpeta del proyecto.
+
+2. Instala las dependencias:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Inicia la aplicación:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Cuando aparezca el menú de Expo, elige cómo abrirla:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Opción | Qué hacer |
+|--------|-----------|
+| **Teléfono (Expo Go)** | Instala Expo Go, conecta el teléfono a la misma Wi‑Fi que la PC y escanea el código QR |
+| **Android** | Presiona `a` (necesitas un emulador de Android Studio) |
+| **iOS** | Presiona `i` (solo en Mac con Xcode) |
+| **Web** | Presiona `w` para abrirla en el navegador |
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+También puedes usar estos comandos:
 
 ```bash
-npm run reset-project
+npm start          # Inicia Expo
+npm run android    # Abre en Android
+npm run ios        # Abre en iOS (solo Mac)
+npm run web        # Abre en el navegador
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Cómo se usa la app
 
-### Other setup steps
+La app tiene estas pantallas en la barra de pestañas:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+| Pestaña | Para qué sirve |
+|---------|----------------|
+| **Inicio** | Pantalla principal de GastoFácil |
+| **Registrar** | Crear un gasto nuevo (descripción, monto y categoría) |
+| **Historial** | Ver la lista de gastos (“Mis gastos”) |
+| **Resumen** | Ver el total y los gastos por categoría |
+| **Eliminar** | Quitar gastos de la lista |
 
-## Learn more
+### Flujo básico
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Entra a **Registrar**, completa los campos y guarda el gasto.
+2. Revisa tus registros en **Historial**.
+3. Consulta totales en **Resumen**.
+4. Si necesitas borrar un gasto, usa **Eliminar** (o el botón Eliminar en Historial, si está disponible).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Los archivos de pantallas están en la carpeta `src/app/`. Este proyecto usa [enrutamiento por archivos](https://docs.expo.dev/router/introduction/) de Expo Router.
 
-## Join the community
+## Estructura principal
 
-Join our community of developers creating universal apps.
+```
+src/app/
+  index.tsx                    → Inicio
+  registrar.tsx                → Registrar gasto
+  historial.tsx                → Historial / Mis gastos
+  resumen.tsx                  → Resumen por categorías
+  editar-eliminar-gastos.tsx   → Eliminar gastos
+  _layout.tsx                  → Layout general
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Recursos
+
+- [Documentación de Expo](https://docs.expo.dev/)
+- [Tutorial de Expo](https://docs.expo.dev/tutorial/introduction/)
+- [Expo Go](https://expo.dev/go)
