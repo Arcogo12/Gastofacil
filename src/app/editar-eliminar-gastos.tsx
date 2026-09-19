@@ -14,39 +14,11 @@ type Gasto = {
   descripcion: string;
   categoria: string;
   monto: number;
-  fecha: string;
 };
-
-const gastosIniciales: Gasto[] = [
-  {
-    id: 1,
-    descripcion: "Hamburguesa",
-    categoria: "Comida",
-    monto: 150,
-    fecha: "18/09/2026",
-  },
-  {
-    id: 2,
-    descripcion: "Transporte",
-    categoria: "Transporte",
-    monto: 80,
-    fecha: "17/09/2026",
-  },
-  {
-    id: 3,
-    descripcion: "Cine",
-    categoria: "Entretenimiento",
-    monto: 120,
-    fecha: "16/09/2026",
-  },
-];
 
 function confirmarEliminacion(onConfirm: () => void) {
   if (Platform.OS === "web") {
-    if (
-      typeof window !== "undefined" &&
-      window.confirm("¿Seguro que deseas eliminar este gasto?")
-    ) {
+    if (typeof window !== "undefined" && window.confirm("¿Seguro que deseas eliminar este gasto?")) {
       onConfirm();
     }
     return;
@@ -58,8 +30,27 @@ function confirmarEliminacion(onConfirm: () => void) {
   ]);
 }
 
-export default function HistorialGastos() {
-  const [gastos, setGastos] = useState<Gasto[]>(gastosIniciales);
+export default function EliminarGastos() {
+  const [gastos, setGastos] = useState<Gasto[]>([
+    {
+      id: 1,
+      descripcion: "Hamburguesa",
+      categoria: "Comida",
+      monto: 150,
+    },
+    {
+      id: 2,
+      descripcion: "Transporte",
+      categoria: "Transporte",
+      monto: 80,
+    },
+    {
+      id: 3,
+      descripcion: "Cine",
+      categoria: "Entretenimiento",
+      monto: 120,
+    },
+  ]);
 
   const eliminarGasto = (id: number) => {
     confirmarEliminacion(() => {
@@ -69,17 +60,16 @@ export default function HistorialGastos() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Mis gastos</Text>
+      <Text style={styles.titulo}>Eliminar gastos</Text>
 
       {gastos.length === 0 ? (
         <Text style={styles.vacio}>No hay gastos registrados.</Text>
       ) : (
         gastos.map((gasto) => (
           <View style={styles.card} key={gasto.id}>
-            <View style={styles.info}>
+            <View>
               <Text style={styles.descripcion}>{gasto.descripcion}</Text>
               <Text style={styles.categoria}>{gasto.categoria}</Text>
-              <Text style={styles.fecha}>{gasto.fecha}</Text>
               <Text style={styles.monto}>${gasto.monto.toFixed(2)}</Text>
             </View>
 
@@ -98,12 +88,13 @@ export default function HistorialGastos() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
+    padding: 20,
+    gap: 15,
   },
-  title: {
-    fontSize: 32,
+  titulo: {
+    fontSize: 27,
     fontWeight: "bold",
-    marginBottom: 25,
+    marginBottom: 10,
   },
   vacio: {
     fontSize: 16,
@@ -111,39 +102,29 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   card: {
-    borderWidth: 1,
-    borderRadius: 12,
     padding: 18,
-    marginBottom: 15,
+    borderRadius: 10,
+    backgroundColor: "#f2f2f2",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 12,
-  },
-  info: {
-    flex: 1,
+    gap: 10,
   },
   descripcion: {
     fontSize: 18,
     fontWeight: "bold",
   },
   categoria: {
-    fontSize: 15,
-    marginTop: 5,
-  },
-  fecha: {
-    fontSize: 13,
-    marginTop: 5,
+    fontSize: 14,
+    marginTop: 4,
   },
   monto: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 8,
+    fontSize: 17,
+    marginTop: 6,
   },
   botonEliminar: {
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 8,
+    padding: 9,
+    borderRadius: 7,
     backgroundColor: "#c62828",
   },
   textoBoton: {
